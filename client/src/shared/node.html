@@ -1,0 +1,16 @@
+<template>
+    <!-- <h6>Duzina submenija: ${menutree.length}</h6> -->
+
+  <ul md-collapsible="accordion: true;">
+    <li repeat.for="item of menutree">
+      <div  md-waves class="collapsible-header">
+        <strong if.bind="item.children.length > 0">${item.menuDescription.substring(0,10)}</strong>
+        <i if.bind="item.children.length > 0" class="mdi-navigation-arrow-drop-down right"></i>
+      </div>
+      <div  class="collapsible-body">
+          <a if.bind="item.children.length == 0" href="#"><span>${item.menuDescription}<span></a>
+          <node  menutree.bind="item.children"></node>
+      </div>
+    </li>
+  </ul>
+</template>

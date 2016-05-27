@@ -1,0 +1,51 @@
+import {inject} from 'aurelia-framework';
+import {NodeModel} from './shared/node-model';
+//import {Router} from 'aurelia-router';
+//import {Poslovi} from './poslovi';
+import {ComponentService} from './shared/component-service';
+@inject(ComponentService)
+export class Dashboard {
+
+  menuItems = [];
+
+  constructor(componentService){
+    this.componentService = componentService;
+    this.routerConfig = this.componentService.podsisRouterConfig;
+    this.heading = "Raspolozive aplikacije - šalterski sistem";
+  }
+
+ attached(){
+   //this.configure();
+ }
+  activate(){
+    //this.configure();
+    //this.routerConfig = componentService.getPodsisRouterConfig();
+    //this.menus = this.componentService.getRootMenus();
+  }
+
+  configureRouter(config, router) {
+    //config.title = 'Komanadna tabla';
+    //router.baseUrl = "loginfinish";
+    config.map(this.routerConfig);
+    //router.refreshNavigation();
+    this.router = router;
+  }
+
+  configure() {
+    return this.componentService.getRootNodes()
+    .then( c =>
+      {
+        this.componentService.menuItems = c;
+        this.componentService.buildMenus();
+        console.log('duzina menija: ' + this.componentService.rootNodes.length);
+        this.routerConfig=this.componentService.getPodsisRouterConfig();
+        //this.routerConfig = this.componentService.routerConfig;
+        this.menus = this.componentService.getRootMenus();
+        this.childrouter.configure(config => {
+          config.title = 'Komandna  tabla';
+          config.map(this.routerConfig);
+        });
+      });
+  }
+
+}

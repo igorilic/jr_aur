@@ -1,0 +1,22 @@
+<template>
+  <h3>Prostor za prikaz podsistema</h3>
+  <div class="row">
+    <template repeat.for = "podsis of podsistemi">
+    <div class="col s6 m3 waves-effect waves-light ">
+      <div class="card blue-grey lighten-1 hoverable">
+        <div class="card-content white-text ">
+          <span class="card-title">${podsis.name}</span>
+          <p>${podsis.description}</p>
+
+          <!-- <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p> -->
+        </div>
+        <div class="card-action">
+          <a class="waves-effect waves blue-grey darken-1 btn-flat" href="${podsis.link}">${podsis.name}</a>
+          <!-- <a href="#">This is a link</a> -->
+        </div>
+      </div>
+    </div>
+  </template>
+  </div>
+</template>

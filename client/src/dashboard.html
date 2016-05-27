@@ -1,0 +1,30 @@
+<template>
+  <section class="au-animate">
+    <!-- <md-navbar  md-fixed="false" style="  background-color: rgba(243, 156, 159, 0.65);line-height: 1; height=44;">
+      <ul class="left">
+        <li md-waves repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+          <a href.bind="row.href">${row.title}</a>
+        </li>
+      </ul>
+    </md-navbar>
+    <div class="container"> -->
+
+      <h3>${heading}</h3>
+      <div class="row">
+        <template repeat.for = "menuItem of menuItems">
+        <div class="col s6 m3 waves-effect waves-light ">
+          <div class="card ${menuItem.background} lighten-1 hoverable">
+            <div class="card-content white-text ">
+              <span class="card-title">${menuItem.title}</span>
+              <p>${menuItem.description}</p>
+            </div>
+            <div class="card-action">
+              <a class="waves-effect waves ${menuItem.background} darken-1 btn-flat" click.delegate="activateSubsystem($index)">${menuItem.title  }</a>
+              <!-- <a href="#">This is a link</a> -->
+            </div>
+          </div>
+        </div>
+      </template>
+      </div>
+  </section>
+</template>

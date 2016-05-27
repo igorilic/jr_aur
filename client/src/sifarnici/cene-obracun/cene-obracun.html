@@ -1,0 +1,92 @@
+<template>
+  <section class="container au-animate">
+    <form submit.delegate="save()" novalidate>
+      <!-- header -->
+      <compose view="../../entity-header.html"></compose>
+      <div class="fixed-action-btn" style="top: 65px; right: 24px;">
+            <a href="#cene-obracun" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">skip_previous</i></a>
+      </div>
+
+      <!-- polja za CeneObracun -->
+      <div class="row au-stagger">
+        <h6>Osnovni podaci</h6>
+        <div class="input-field col s12 m4">
+          <select id="Opis" value.bind="entity.SIF_CEN_OPIS" md-select>
+            <option value="">Izaberi cenovnik</option>
+            <option repeat.for="opis of ceneOpisi" model.bind="opis.SIF_CEN_OPIS">${opis.NAZIV_CENOVNIKA}</option>
+          </select>
+          <label for="Opis">Naziv cenovnika</label>
+        </div>
+        <div class="input-field col s6 m2">
+          <input id="OpsegOd" type="number" value.bind="entity.OPSEG_OD | numberFormat:'0,0.00' ">
+          <label for="OpsegOd" materialize>Opseg od</label>
+        </div>
+        <div class="input-field col s6 m2">
+          <input id="OpsegDo" type="number" value.bind="entity.OPSEG_DO | numberFormat:'0,0.00' ">
+          <label for="OpsegDo" materialize>Opseg do</label>
+        </div>
+        <div class="input-field col s6 m2">
+          <input id="ZaNarednih" type="number" value.bind="entity.ZA_NAREDNIH ">
+          <label for="ZaNarednih" materialize>Za narednih</label>
+        </div>
+      </div>
+
+      <!-- order shipping fields -->
+      <div class="row">
+        <h6>Poštarine</h6>
+
+        <div class="input-field col s6 m3">
+          <input id="FiksnaPostarina" type="number" value.bind="entity.FIKSNI_IZNOS_POST | numberFormat:'0,0.00' ">
+          <label for="FiksnaPostarina" materialize>Fiksna poštarina</label>
+        </div>
+        <div class="input-field col s6 m3">
+          <input id="ProcenatPos" type="number" value.bind="entity.PROCENAT_POST | numberFormat:'0,0.00' ">
+          <label for="ProcenatPos" materialize>Procenat poštarine</label>
+        </div>
+        <div class="input-field col s6 m3">
+          <input id="FiksnaPostarinaDom" type="number" value.bind="entity.FIKSNI_IZNOS_POST_DOM | numberFormat:'0,0.00' ">
+          <label for="FiksnaPostarinaDom" materialize>Dom. fiksna poštarina </label>
+        </div>
+        <div class="input-field col s6 m3">
+          <input id="ProcenatPosDom" type="number" value.bind="entity.PROCENAT_POST_DOM | numberFormat:'0,0.00' ">
+          <label for="ProcenatPosDom" materialize>Dom. procenat poštarine</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <h6>Zone</h6>
+        <div class="input-field col s6 m2">
+          <input id="Zona1" type="number" value.bind="entity.ZONA_1 | numberFormat:'0,0.00' ">
+          <label for="Zona1" materialize>Zona 1</label>
+        </div>
+        <div class="input-field col s6 m2">
+          <input id="Zona2" type="number" value.bind="entity.ZONA_2 | numberFormat:'0,0.00' ">
+          <label for="Zona2" materialize>Zona 2</label>
+        </div>
+        <div class="input-field col s6 m2">
+          <input id="Zona3" type="number" value.bind="entity.ZONA_3 | numberFormat:'0,0.00' ">
+          <label for="Zona3" materialize>Zona 3</label>
+        </div>
+        <div class="input-field col s6 m2">
+          <input id="Zona4" type="number" value.bind="entity.ZONA_4 | numberFormat:'0,0.00' ">
+          <label for="Zona4" materialize>Zona 4</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <h6>Ostalo</h6>
+        <div class="input-field col s6 m2">
+          <input id="FiksniDodatni" type="number" value.bind="entity.FIKSNI_DODATNI_IZNOS | numberFormat:'0,0.00' ">
+          <label for="FiksniDodatni" materialize>Fiksni dodat. izn.</label>
+        </div>
+
+        <div class="input-field col s12 m4">
+          <input id="Formula" type="text" value.bind="entity.FORMULA">
+          <label for="Formula" materialize>Formula</label>
+        </div>
+      </div>
+
+      <!-- <compose model.bind="entity" view-model="cene-obracun/cene-obracun-details"></compose> -->
+    </form>
+  </section>
+</template>

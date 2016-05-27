@@ -1,0 +1,55 @@
+<template>
+  <require from="../shared/node"></require>
+  /*<style>
+    @media all and (min-width: 992px) {
+      header, main, footer {
+        padding-left: 240px;
+      }
+      md-navbar[md-fixed="true"] nav {
+        padding-right: 240px;
+      }
+    }
+
+    @media all and (max-width: 992px) {
+        header, main, footer {
+            padding-left: 0;
+        }
+        md-navbar[md-fixed="true"] nav {
+          padding-right: 0;
+        }
+    }
+  </style>*/
+
+  <div class="row">
+    <div class="col s8">
+      <ul md-collapsible="accordion: true; popout: true;">
+        <li>
+          <div class="collapsible-header"><i class="mdi-image-filter-drama"></i>First</div>
+          <div class="collapsible-body">
+            <p>Lorem ipsum dolor sit amet.</p>
+            <ul md-collapsible="accordion: true; popout: true;">
+              <li>
+                <div class="collapsible-header active"><i class="mdi-maps-place"></i>First - Second</div>
+                <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header active"><i class="mdi-maps-place"></i>Second</div>
+          <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="mdi-maps-place"></i>Third</div>
+          <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <md-sidenav view-model.ref="sideNav" md-fixed="true" md-edge="left" md-width ="400">
+    <node menutree.bind="rootNodes"></node>
+  </md-sidenav>
+
+  <router-view></router-view>
+</template>

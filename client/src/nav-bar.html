@@ -1,0 +1,72 @@
+<template>
+  <require from="./route-highlight"></require>
+
+  <style>
+    .side-nav .li[md-waves] {
+      display: block;
+    }
+  </style>
+
+  <md-navbar md-fixed="true">
+    <a md-sidenav-collapse="ref.bind: sideNav;"  class="left hide-on-large-only"><i class="mdi-navigation-menu"></i></a>
+    <a href="#" class="brand-logo right"><span class="flow-text">${router.title}</span></a>
+
+    <ul class="left hide-on-med-and-down">
+      <li  if.bind="isAuthenticated" md-waves repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+        <a href.bind="row.href">${row.title}</a>
+      </li>
+
+      <!-- <li if.bind="isAuthenticated" md-waves route-highlight="routes: customer">
+        <a route-href="route: customer">CRM</a>
+      </li> -->
+
+      <li if.bind="!isAuthenticated" md-waves route-highlight="routes: login">
+        <a route-href="route: login">Prijava</a>
+      </li>
+
+      <!-- <li if.bind="!isAuthenticated" md-waves route-highlight="routes: signup">
+        <a route-href="route: signup">Registracija</a>
+      </li> -->
+
+      <!-- <li if.bind="isAuthenticated" md-waves route-highlight="routes: profile">
+        <a route-href="route: profile">Profil</a>
+      </li> -->
+
+      <li if.bind="isAuthenticated" md-waves route-highlight="routes: logout">
+        <a route-href="route: logout">Odjava</a>
+      </li>
+
+      <li class="loader" if.bind="router.isNavigating">
+        <i class="fa fa-spinner fa-spin fa-2x"></i>
+      </li>
+
+    </ul>
+
+    <md-sidenav view-model.ref="sideNav">
+      <ul>
+        <li if.bind="isAuthenticated" md-waves repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+          <a href.bind="row.href">${row.title}</a>
+        </li>
+
+        <li if.bind="!isAuthenticated" md-waves route-highlight="routes: login">
+          <a route-href="route: login">Prijava</a>
+        </li>
+
+        <li if.bind="!isAuthenticated" md-waves route-highlight="routes: signup">
+          <a route-href="route: signup">Registracija</a>
+        </li>
+
+        <li if.bind="isAuthenticated" md-waves route-highlight="routes: profile">
+          <a route-href="route: profile">Profil</a>
+        </li>
+
+        <li if.bind="isAuthenticated" md-waves route-highlight="routes: logout">
+          <a route-href="route: logout">Odjava</a>
+        </li>
+
+      </ul>
+    </md-sidenav>
+
+  </md-navbar>
+
+</template>

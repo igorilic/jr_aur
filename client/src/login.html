@@ -1,0 +1,42 @@
+<template>
+  <section class="au-animate row">
+      <div class="col m4 offset-m4">
+        <h2>Prijavite se</h2>
+        <form method="post"  role="form"  name="loginForm" submit.trigger="login()" validate.bind="validation">
+
+          <!-- <div if.bind = "!cardError"  class="form-group has-feedback">
+            <input class="form-control input-lg" type="checkbox" name="" checked.bind="cardAuthenticate" >Prijava karticom</br>
+            <span class="ion-at form-control-feedback"></span>
+          </div> -->
+          <div if.bind = "cardAuthenticate" validate.bind="validation" >
+            <md-input  md-label="PIN kod" md-value.bind="pinCodeIn" id="pin-code" validate-property="pinCodeIn" required autofocus></md-input>
+          </div>
+
+          <div  if.bind = "!cardAuthenticate" validate.bind="validation" >
+            <md-input  md-label="Korisničko ime" md-value.bind="email" id = "email" validate-property="email" required autofocus></md-input>
+          </div>
+
+          <div if.bind = "!cardAuthenticate" validate.bind="validation" >
+            <md-input md-type="password" md-label="Lozinka" md-value.bind="password" id="password" validate-property="password" required ></md-input>
+          </div>
+
+          <!-- <div class="input-field">
+            <input  if.bind = "cardAuthenticate"  class="validate" type="text" name="pinCode" id="pin-code" value.bind="pinCodeIn"  required autofocus>
+            <label  if.bind = "cardAuthenticate" class="${pinCodeIn.length > 0 ? 'active' : ''}" for="pin-code">PIN kod</label>
+            <input if.bind = "!cardAuthenticate" class="validate" type="text" name="email" id="email" value.bind="email"  required autofocus>
+            <label  if.bind = "!cardAuthenticate" class="${email.length > 0 ? 'active' : ''}" for="email">Korisnicko ime</label>
+          </div> -->
+
+          <!-- <div if.bind = "!cardAuthenticate"  class="input-field">
+            <input class="validate" type="password" name="password" value.bind="password" id="password"  required>
+            <label class="${password.length > 0 ? 'active' : ''}" for="password">Lozinka</label>
+          </div> -->
+
+          <button type="submit" click.delegate="login()" disabled.bind="!validation.result.isValid" class="waves-effect waves-light btn-large" >Prijavi me<i class="material-icons right">send</i></button>
+
+          <br/>
+        </form>
+      </div>
+
+  </section>
+</template>

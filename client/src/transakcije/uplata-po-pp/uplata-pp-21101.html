@@ -1,0 +1,123 @@
+<template>
+
+  <section class="container au-animate">
+
+    <form submit.delegate="save()" novalidate>
+      <!-- header -->
+      <compose view="../transition-header.html"></compose>
+
+      <div class="fixed-action-btn" style="top: 65px; right: 24px;">
+            <a click.delegate="goUp()" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">skip_previous</i></a>
+      </div>
+
+      <div class="row au-stagger">
+        <div class="input-field col s12 m">
+          Javni prihod:
+          <md-switch md-label-on="Da" md-label-off="ne" md-checked.bind="javniprihod"></md-switch>
+        </div>
+        <div class="input-field col s12 m">
+          Uplata na domu:
+          <md-switch md-label-on="Da" md-label-off="ne" md-checked.bind="nadomu"></md-switch>
+        </div>
+      </div>
+
+      <div class="row au-stagger">
+        <div class="input-field col s6 m4">
+            <!-- <input id="Uplatilac" type="number" value.bind="transakcija.H01"> -->
+            <md-input md-label="Uplatio je (ime, adresa i telefon)" md-value.bind="transakcija.H01" md-text-area="true"></md-input>
+            <!-- <label for="Uplatilac" materialize>Uplatio je (ime, adresa i telefon)</label> -->
+        </div>
+        <div class="input-field col s6 m4">
+            <input id="RacunPrimaoca" type="number" value.bind="transakcija.F01">
+            <label for="RacunPrimaoca" materialize>Račun primaoca</label>
+        </div>
+      </div>
+
+      <div class="row au-stagger">
+        <div class="input-field col s6 m4">
+            <!-- <input id="Uplatilac" type="number" value.bind="transakcija.H01"> -->
+            <md-input md-label="Svrha doznake" md-value.bind="transakcija.S01" md-text-area="true"></md-input>
+            <!-- <label for="Uplatilac" materialize>Uplatio je (ime, adresa i telefon)</label> -->
+        </div>
+        <div class="input-field col s6 m4">
+            <input id="IznosUkupno" type="number" value.bind="transakcija.IZNOS | numberFormat:'0,0.00'">
+            <label for="IznosUkupno" materialize>Iznos (km)</label>
+        </div>
+      </div>
+
+      <div class="row au-stagger">
+        <div class="input-field col s6 m4">
+            <!-- <input id="Uplatilac" type="number" value.bind="transakcija.H01"> -->
+            <md-input md-label="Primalac" md-value.bind="transakcija.H02" md-text-area="true"></md-input>
+            <!-- <label for="Uplatilac" materialize>Uplatio je (ime, adresa i telefon)</label> -->
+        </div>
+        <div class="input-field col s6 m3">
+            <input id="JMBG" type="number" value.bind="transakcija.F03">
+            <label for="JMBG" materialize>Broj poreskog obveznika</label>
+        </div>
+        <div class="input-field col s6 m2">
+            <select id="VrstaUplate" value.bind="transakcija.S03" md-select>
+              <option value="">Izaberite vrstu uplate</option>
+              <option repeat.for="vrstauplate of vrstaUplata" model.bind="vrstauplate.SIFRA_VRSTE_UPLATE">${vrstauplate.NAZIV_VRSTE_UPLATE}</option>
+            </select>
+            <label for="VrstaUplate" materialize>Vrsta uplate</label>
+        </div>
+      </div>
+
+      <div class="row au-stagger">
+        <div class="input-field col s12 m3">
+          <select id="TipPrihoda" value.bind="transakcija.TIP_PRIHODA" md-select>
+            <option value="">Izaberite vrstu prihoda</option>
+            <option repeat.for="prihod of tipoviPrihoda" model.bind="prihod.SIF_TIP_PRIHODA">${prihod.NAZIV_TIPA}</option>
+          </select>
+          <label for="TipPrihoda">Vrsta prihoda</label>
+        </div>
+        <div class="input-field col s12 m3">
+          <input id="PorezDatOd" type="text" materialize="datepicker" value.bind="transakcija.D01 | dateFormat:'D.M.YYYY'">
+          <label for="PorezDatOd" materialize>Datum od:</label>
+        </div>
+        <div class="input-field col s12 m3">
+          <input id="PorezDatDo" type="text" materialize="datepicker" value.bind="transakcija.D02 | dateFormat:'D.M.YYYY'">
+          <label for="PorezDatDo" materialize>Datum do:</label>
+        </div>
+      </div>
+
+      <div class="row au-stagger">
+        <div class="input-field col s12 m3">
+          <select id="NacinObrPost" value.bind="transakcija.SIF_NACIN_OBR" md-select>
+            <option value="">Izaberite način obr. poštarine</option>
+            <option repeat.for="nacin of naciniObrPostarine" model.bind="nacin.SIF_NACIN_OBR">${nacin.NAZIV}</option>
+          </select>
+          <label for="NacinObrPost">Način obr. poštarine</label>
+        </div>
+        <div class="input-field col s12 m2">
+          <select id="Opstine" value.bind="transakcija.S02" md-select>
+            <option value="">Izaberite opštinu</option>
+            <option repeat.for="opstina of opstine" model.bind="opstina.SIF_OPSTINE">${opstina.NAZIV_OPSTINE}</option>
+          </select>
+          <label for="Opstine">Opština</label>
+        </div>
+        <div class="input-field col s12 m2">
+          <select id="BudzOrg" value.bind="transakcija.I01" md-select>
+            <option value="">Izaberite opštinu</option>
+            <option repeat.for="budzorg of budzetskeOrganizacije" model.bind="budzorg.SIF_BUDZ_ORG">${budzorg.NAZIV_BUDZ_ORG}</option>
+          </select>
+          <label for="BudzOrg">Budžetska organizacija</label>
+        </div>
+      </div>
+
+      <div class="row au-stagger">
+        <div class="col s6 m3">
+            <p>Ukupna poštarina <strong>${transakcija.POSTARINA_IZNOS | numberFormat:'0,0.00' }</stromg></p>
+        </div>
+        <div class="input-field col s6 m4">
+            <input id="PozivNaBroj" type="number" value.bind="transakcija.F02">
+            <label for="PozivNaBroj" materialize>Poziv na broj</label>
+        </div>
+      </div>
+
+    </form>
+
+  </section>
+
+</template>

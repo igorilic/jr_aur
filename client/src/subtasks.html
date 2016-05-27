@@ -1,0 +1,23 @@
+<template>
+  <section class="au-animate">
+    <md-navbar  md-fixed="false" style=" background-color: #b71c1c ;line-height: 1; height=36px;">
+      <ul class="left">
+        <li md-waves repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+
+          <a href.bind="row.href" if.bind="!row.settings.subMenu">${row.title}</a>
+
+          <a href="#" class="dropdown-button" data-activates="dropdown1" if.bind="row.settings.subMenu">
+            ${row.title} <span class="caret"></span></a>
+
+          <ul id="dropdown1" class="dropdown-content" if.bind="row.settings.subMenu">
+            <li repeat.for="menu of route.settings.subMenu">
+              <a href.bind="menu.href">${menu.title}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </md-navbar>
+
+  </section>
+  <router-view></router-view>
+</template>

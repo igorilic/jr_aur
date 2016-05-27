@@ -1,0 +1,24 @@
+import {Behavior,inject} from 'aurelia-framework';
+import {NodeModel} from './shared/node-model';
+import {HttpClient} from 'aurelia-fetch-client';
+import {Poslovi} from './poslovi';
+import {ComponentService} from './shared/component-service';
+
+@inject(Poslovi,ComponentService)
+export class MenuTreeView {
+  constructor(poslovi,componentService){
+    this.routerConfig = componentService.getPodsisRouterConfig();
+    this.poslovi = poslovi;
+    this.heading = "Raspolozive aplikacije - šalterski sistem";
+  }
+
+
+  activate(){
+  }
+
+  configureRouter(config, router) {
+    config.map(this.routerConfig);
+    this.router = router;
+  }
+
+}

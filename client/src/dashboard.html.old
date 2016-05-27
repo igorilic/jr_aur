@@ -1,0 +1,35 @@
+<template>
+  <require from="./route-highlight"></require>
+
+  <section class="au-animate">
+    <md-navbar  md-fixed="false" style="  background-color: rgba(243, 156, 159, 0.65);line-height: 1; height=44;">
+      <ul class="left">
+        <li md-waves repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+          <a href.bind="row.href">${row.title}</a>
+        </li>
+      </ul>
+    </md-navbar>
+    <div class="container">
+    <!-- <ul class="row">
+      <li class="col s6 m4" repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+        <md-card md-waves md-title = "Podistem ${row.title}" >
+          <a href.bind="row.href">${row.title}</a>
+        </md-card>
+      </li>
+    </ul> -->
+    <!-- <h4>${heading}</h4>
+    <div class="container">
+        <ul class="row">
+          <li class = "col s6 m3"  repeat.for="menu of menus" >
+            <div>Naziv menija:  ${menu.name}</div></br>
+            <div>Naslov menija:  ${menu.title}</div></br>
+            <md-card md-waves md-title.bind = "menu.title" >
+              <a route-href="route: menu20; params.id=id ">${menu.title}</a>
+            </md-card>
+          </li>
+        </ul>
+    </div> -->
+  </div>
+    <router-view></router-view>
+  </section>
+</template>

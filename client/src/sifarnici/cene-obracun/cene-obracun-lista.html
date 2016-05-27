@@ -1,0 +1,65 @@
+<template>
+  <section class="col m12 au-animate">
+
+    <h3 class="left">Obračunske cene</h3>
+    <!-- <a href="#cene-obracun/novi" class="waves-effect waves-light btn right header-button">Dodaj</a> -->
+
+  <div class="fixed-action-btn" style="top: 65px; right: 24px;">
+        <a href="#cene-obracun/novi" class="btn-floating btn-large waves-effect waves-light accent"><i class="material-icons">add</i></a>
+  </div>
+    <table class="bordered hoverable table-responsive highlight striped au-stagger">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Obračun. cena #</th>
+          <th>Naziv - opis cenovnika</th>
+          <th>Opseg od</th>
+          <th>Opseg do</th>
+          <th>Fiksna pošt.</th>
+          <th>Procenat pošt.</th>
+          <th>Za naredne</th>
+          <th>Fiksni dodatni</th>
+          <th>Zona 1</th>
+          <th>Zona 2</th>
+          <th>Zona 3</th>
+          <th>Zona 4</th>
+          <th>Fiksna dom. pošt.</th>
+          <th>Procenat dom. pošt.</th>
+          <th>FORMULA</th>
+        </tr>
+      </thead>
+      <tbody class="cursor-pointer">
+        <tr repeat.for="entity of entities" click.delegate="$parent.open(entity.ID_CEN_OBRACUN)">
+          <td click.delegate="$parent.removeItem(entity.ID_CEN_OBRACUN,$index)">
+            <i class="mdi-navigation-close red-text darken-4" />
+          </td>
+          <td>${entity.ID_CEN_OBRACUN}</td>
+          <td><span>${entity.SIF_CENE_OPISI_NAZIV_CENOVNIKA}</span></td>
+          <td>${entity.OPSEG_OD | numberFormat:'0,0.00'}</td>
+          <td>${entity.OPSEG_DO | numberFormat:'0,0.00'}</td>
+          <td>${entity.FIKSNI_IZNOS_POST | numberFormat:'0,0.00'}</td>
+          <td>${entity.PROCENAT_POST | numberFormat:'0,0.00'}</td>
+          <td>${entity.ZA_NAREDNIH | numberFormat:'0,0.00'}</td>
+          <td>${entity.FIKSNI_DODATNI_IZNOS | numberFormat:'0,0.00'}</td>
+          <td>${entity.ZONA_1 | numberFormat:'0,0.00'}</td>
+          <td>${entity.ZONA_2 | numberFormat:'0,0.00'}</td>
+          <td>${entity.ZONA_3 | numberFormat:'0,0.00'}</td>
+          <td>${entity.ZONA_4 | numberFormat:'0,0.00'}</td>
+          <td>${entity.FIKSNI_IZNOS_POST_DOM | numberFormat:'0,0.00'}</td>
+          <td>${entity.PROCENAT_POST_DOM | numberFormat:'0,0.00'}</td>
+          <td>${entity.FORMULA}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="progress" show.bind="isLoading">
+      <div class="indeterminate"></div>
+    </div>
+
+    <pager page-count.bind="pageCount"
+           page-index.bind="pageIndex"
+           set-page.call="setPage($event)">
+    </pager>
+
+  </section>
+</template>

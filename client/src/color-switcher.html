@@ -1,0 +1,30 @@
+<template bindable="primaryColor, accentColor">
+  <ul md-collapsible>
+    <li>
+      <div class="collapsible-header">
+        <i class="mdi-navigation-arrow-drop-down left"></i>Promena boje
+      </div>
+      <div class="collapsible-body" style="padding: 10px;">
+        primarna boja:
+        <select md-select value.two-way="primaryColor">
+          <option value="#ee6e73">[Materialize] crvena</option>
+          <option value="#3f51b5">[Paper] indigo</option>
+          <option value="#00bcd4">[Material-UI] svetlo plava</option>
+          <option value="#78909C">[MuiCss] sivo plava</option>
+          <option value="#4caf50">zelena</option>
+          <option value="#ff9800">narandžasta</option>
+        </select>
+
+        boja za naglašavanje:
+        <select md-select value.two-way="accentColor">
+          <option value="#009688">[Materialize] tirkizna</option>
+          <option value="#e91e63">[Paper] ružičasta</option>
+          <option value="#ff4081">[Material-UI] ružičasta</option>
+          <option value="#FF80AB">[MuiCss] druga ružičasta</option>
+          <option value="#4caf50">zelena</option>
+          <option value="#ff9800">narandžasta</option>
+        </select>
+      </div>
+    </li>
+  </ul>
+</template>
